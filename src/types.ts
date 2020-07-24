@@ -1,3 +1,4 @@
+import { StyleProp, ViewStyle } from "react-native";
 
 export interface Dimensions {
     width: number;
@@ -23,6 +24,7 @@ interface BaseProps {
     renderHeader?: (data: DataPress) => React.ReactNode;
     renderFooter?: (data: DataPress) => React.ReactNode;
     space?: number;
+    containerImageStyle?: StyleProp<ViewStyle>;
 }
 export interface MasonryProps extends BaseProps {
     data?: Data[];

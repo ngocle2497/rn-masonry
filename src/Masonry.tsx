@@ -6,7 +6,7 @@ import { DEFAULT_COLUMNS, DEFAULT_CELL_SPACE } from './constants'
 import { assignObjectColumn, assignObjectIndex } from './handle'
 import { Column } from './Column'
 
-const MasonryComponent = ({ data = [],customRenderItem, refreshColor, canRefresh = false, onRefresh, refreshing = false, onEndReach, columns = DEFAULT_COLUMNS, space = DEFAULT_CELL_SPACE, onPress, customImageComponent, customImageProps, renderFooter, renderHeader }: MasonryProps) => {
+const MasonryComponent = ({ data = [], containerImageStyle, customRenderItem, refreshColor, canRefresh = false, onRefresh, refreshing = false, onEndReach, columns = DEFAULT_COLUMNS, space = DEFAULT_CELL_SPACE, onPress, customImageComponent, customImageProps, renderFooter, renderHeader }: MasonryProps) => {
     const [dimensions, setDimensions] = useState<Dimensions>({ height: 0, width: 0 })
     const [dataSource, setDataSource] = useState<Array<ItemColumn[]>>([])
 
@@ -81,7 +81,7 @@ const MasonryComponent = ({ data = [],customRenderItem, refreshColor, canRefresh
     }, [onRefresh])
     const _renderItem = ({ item }: { item: ItemColumn[]; index: number }) => {
         return (
-            <Column  {...{ onPress, space,customRenderItem, customImageComponent, customImageProps, renderFooter, renderHeader, dimensions, columns }} data={item} />
+            <Column  {...{ onPress, space, containerImageStyle, customRenderItem, customImageComponent, customImageProps, renderFooter, renderHeader, dimensions, columns }} data={item} />
         )
     }
     const _keyExtractor = useCallback((item: ItemColumn[], index) => index.toString(), [])
@@ -92,7 +92,6 @@ const MasonryComponent = ({ data = [],customRenderItem, refreshColor, canRefresh
             _formatData();
         }
     }, [data, columns])
-
     return (
         <View onLayout={_onLayoutChange} style={[styles.container]}>
             <FlatList

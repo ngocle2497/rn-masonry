@@ -5,16 +5,16 @@ import { ColumnsProps, Dimensions, CellProps } from './types'
 import { Cell } from './Cell'
 import { DEFAULT_COLUMNS, DEFAULT_CELL_SPACE } from './constants'
 
-const ColumnComponent = ({ data, dimensions, customRenderItem, columns, space = DEFAULT_CELL_SPACE, customImageComponent, customImageProps, renderFooter, renderHeader }: ColumnsProps) => {
+const ColumnComponent = ({ data, dimensions, containerImageStyle, customRenderItem, columns, space = DEFAULT_CELL_SPACE, customImageComponent, customImageProps, renderFooter, renderHeader }: ColumnsProps) => {
     const [columnWidth, setColumnWidth] = useState(0)
     const [dataSource, setDataSource] = useState<Array<CellProps>>([])
 
-    const _resizeImage = useCallback(() => {
+    const _resizeImage = () => {
         return data.map((image: any) => {
             const imageForColumn = _resizeByColumns(image.dimensions, dimensions, columns)
             return { ...image, ...imageForColumn }
         })
-    }, [data, dimensions, columns])
+    }
 
     const _resizeByColumns = useCallback((imgDimensions: Dimensions, listDimensions: Dimensions, nColumns = DEFAULT_COLUMNS) => {
         const { width } = listDimensions;
@@ -33,13 +33,13 @@ const ColumnComponent = ({ data, dimensions, customRenderItem, columns, space = 
 
     const _keyExtractor = useCallback((item: CellProps) => ("IMAGE_" + item.uri), []);
 
-    const _renderItem = useCallback(({ item }: { item: CellProps; index: number; }) => {
+    const _renderItem = ({ item }: { item: CellProps; index: number; }) => {
         const { height, width, uri, data, column, dimensions } = item;
         const propsBase = { uri, width, height, data, column, actualSize: dimensions }
         return !customRenderItem ? (
-            <Cell {...propsBase} {...{  space, dimensions, customImageComponent, customImageProps, renderFooter, renderHeader }} />
+            <Cell {...propsBase} {...{ containerImageStyle,space, dimensions, customImageComponent, customImageProps, renderFooter, renderHeader }} />
         ) : customRenderItem(propsBase)
-    }, [customRenderItem, dimensions, customImageComponent, customImageProps, renderFooter, renderHeader])
+    }
 
     const containerStyle = useMemo(() => [{ width: columnWidth, overflow: 'hidden' }] as StyleProp<ViewStyle>, [columnWidth])
 
@@ -52,6 +52,7 @@ const ColumnComponent = ({ data, dimensions, customRenderItem, columns, space = 
         <View style={containerStyle}>
             <FlatList
                 data={dataSource}
+                scrollEnabled={false}
                 renderItem={_renderItem}
                 keyExtractor={_keyExtractor}
                 bounces={false}
