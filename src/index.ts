@@ -1,5 +1,2 @@
-export default {
-  multiply(a: number, b: number) {
-    return Promise.resolve(a * b);
-  },
-};
+export { Masonry as default } from './Masonry'
+export type { Data, DataPress, InjectorProps, ColumnsProps } from './types';
