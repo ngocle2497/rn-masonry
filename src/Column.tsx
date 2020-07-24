@@ -5,7 +5,7 @@ import { ColumnsProps, Dimensions, CellProps } from './types'
 import { Cell } from './Cell'
 import { DEFAULT_COLUMNS, DEFAULT_CELL_SPACE } from './constants'
 
-const ColumnComponent = ({ data, dimensions, columns, space = DEFAULT_CELL_SPACE, customImageComponent, customImageProps, renderFooter, renderHeader }: ColumnsProps) => {
+const ColumnComponent = ({ data, dimensions, customRenderItem, columns, space = DEFAULT_CELL_SPACE, customImageComponent, customImageProps, renderFooter, renderHeader }: ColumnsProps) => {
     const [columnWidth, setColumnWidth] = useState(0)
     const [dataSource, setDataSource] = useState<Array<CellProps>>([])
 
@@ -35,10 +35,11 @@ const ColumnComponent = ({ data, dimensions, columns, space = DEFAULT_CELL_SPACE
 
     const _renderItem = useCallback(({ item }: { item: CellProps; index: number; }) => {
         const { height, width, uri, data, column, dimensions } = item;
-        return (
-            <Cell {...{ uri, width, height, space, data, dimensions, column, customImageComponent, customImageProps, renderFooter, renderHeader }} />
-        )
-    }, [])
+        const propsBase = { uri, width, height, data, column, actualSize: dimensions }
+        return !customRenderItem ? (
+            <Cell {...propsBase} {...{  space, dimensions, customImageComponent, customImageProps, renderFooter, renderHeader }} />
+        ) : customRenderItem(propsBase)
+    }, [customRenderItem, dimensions, customImageComponent, customImageProps, renderFooter, renderHeader])
 
     const containerStyle = useMemo(() => [{ width: columnWidth, overflow: 'hidden' }] as StyleProp<ViewStyle>, [columnWidth])
 

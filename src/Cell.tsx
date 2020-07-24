@@ -6,25 +6,26 @@ import { Injector } from './Injector'
 
 const CellComponent = ({ onPress, data, width, height, uri, column, space, dimensions, customImageComponent, customImageProps, renderFooter, renderHeader }: CellProps) => {
 
+    const dataBase = useMemo(()=>({ uri, width, height, data, column, actualSize: dimensions }),[uri, width, height, data, column, dimensions])
     const _onPress = useCallback(() => {
         if (typeof onPress === 'function') {
-            onPress({ uri, width, height, data, column, actualSize: dimensions })
+            onPress(dataBase)
         }
-    }, [onPress, data])
+    }, [onPress, dataBase])
 
 
     const _renderHeader = useCallback(() => {
         return renderHeader ? (
-            renderHeader({ uri, width, height, data, column, actualSize: dimensions })
+            renderHeader(dataBase)
         ) : null;
-    }, [uri, width, height, data, column, dimensions])
+    }, [dataBase,renderHeader])
 
 
     const _renderFooter = useCallback(() => {
         return renderFooter ? (
-            renderFooter({ uri, width, height, data, column, actualSize: dimensions })
+            renderFooter(dataBase)
         ) : null;
-    }, [uri, width, height, data, column, dimensions])
+    }, [dataBase,renderHeader])
 
     const imageStyle = useMemo(() => [{ width: width, height: height, marginTop: space }] as StyleProp<ImageStyle>, [width, height])
     const imageProps = useMemo<ImageProps>(() => ({ key: uri, data: data, resizeMethod: 'auto', source: { uri }, style: imageStyle }), [imageStyle, uri, data])

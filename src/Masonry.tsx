@@ -1,12 +1,12 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
-import { StyleSheet, View, FlatList, LayoutChangeEvent, Image } from 'react-native'
+import { StyleSheet, View, FlatList, LayoutChangeEvent, Image, RefreshControl } from 'react-native'
 import isEqual from 'react-fast-compare'
 import { MasonryProps, Dimensions, ItemColumn } from './types'
 import { DEFAULT_COLUMNS, DEFAULT_CELL_SPACE } from './constants'
 import { assignObjectColumn, assignObjectIndex } from './handle'
 import { Column } from './Column'
 
-const MasonryComponent = ({ data = [], onEndReach, columns = DEFAULT_COLUMNS, space = DEFAULT_CELL_SPACE, onPress, customImageComponent, customImageProps, renderFooter, renderHeader }: MasonryProps) => {
+const MasonryComponent = ({ data = [],customRenderItem, refreshColor, canRefresh = false, onRefresh, refreshing = false, onEndReach, columns = DEFAULT_COLUMNS, space = DEFAULT_CELL_SPACE, onPress, customImageComponent, customImageProps, renderFooter, renderHeader }: MasonryProps) => {
     const [dimensions, setDimensions] = useState<Dimensions>({ height: 0, width: 0 })
     const [dataSource, setDataSource] = useState<Array<ItemColumn[]>>([])
 
@@ -69,14 +69,19 @@ const MasonryComponent = ({ data = [], onEndReach, columns = DEFAULT_COLUMNS, sp
         setDimensions({ height, width })
     }, [])
 
-    const _onHandleEndReach = () => {
+    const _onHandleEndReach = useCallback(() => {
         if (typeof onEndReach === 'function') {
             onEndReach()
         }
-    }
-    const _renderItem = ({ item, index }: { item: ItemColumn[]; index: number }) => {
+    }, [onEndReach])
+    const _onRefresh = useCallback(() => {
+        if (typeof onRefresh === 'function') {
+            onRefresh()
+        }
+    }, [onRefresh])
+    const _renderItem = ({ item }: { item: ItemColumn[]; index: number }) => {
         return (
-            <Column  {...{ onPress, space, customImageComponent, customImageProps, renderFooter, renderHeader, dimensions, columns }} data={item} />
+            <Column  {...{ onPress, space,customRenderItem, customImageComponent, customImageProps, renderFooter, renderHeader, dimensions, columns }} data={item} />
         )
     }
     const _keyExtractor = useCallback((item: ItemColumn[], index) => index.toString(), [])
@@ -93,6 +98,7 @@ const MasonryComponent = ({ data = [], onEndReach, columns = DEFAULT_COLUMNS, sp
     return (
         <View onLayout={_onLayoutChange} style={[styles.container]}>
             <FlatList
+                refreshControl={canRefresh ? <RefreshControl colors={refreshColor} onRefresh={_onRefresh} refreshing={refreshing} /> : undefined}
                 data={dataSource}
                 renderItem={_renderItem}
                 keyExtractor={_keyExtractor}

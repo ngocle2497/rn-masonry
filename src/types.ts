@@ -28,12 +28,17 @@ export interface MasonryProps extends BaseProps {
     data?: Data[];
     columns?: number;
     onEndReach?: () => void;
+    canRefresh?: boolean;
+    onRefresh?: () => void;
+    refreshing?: boolean;
+    refreshColor?: string[];
+    customRenderItem?: (data: DataPress) => React.ReactElement;
 }
 export interface ColumnsProps extends BaseProps {
     data: Array<ItemColumn>;
     dimensions: Dimensions;
     columns: number;
-
+    customRenderItem?: (data: DataPress) => React.ReactElement;
 }
 export interface CellProps extends BaseProps {
     uri: string;
