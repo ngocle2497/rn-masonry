@@ -92,9 +92,7 @@ const MasonryComponent = ({ data = [],customRenderItem, refreshColor, canRefresh
             _formatData();
         }
     }, [data, columns])
-    useEffect(() => {
-        console.log('dataSource', dataSource)
-    }, [dataSource])
+
     return (
         <View onLayout={_onLayoutChange} style={[styles.container]}>
             <FlatList
