@@ -20,13 +20,11 @@
 5. [License](#license)
 
 ## installation
-    ```sh
-    $ npm install --save rn-masonry
-    ```
-    or
-    ```bash
-    $ yarn add rn-masonry
-    ```
+```sh
+yarn add rn-masonry
+# or
+npm install rn-masonry
+```
 ## Usage
 
     ```js
