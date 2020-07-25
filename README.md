@@ -3,7 +3,7 @@
 <img src="./demo/demo.gif">
 </div>
 
-`rn-masonry` is built with the following features and functionalities baked in 🍰:
+# Features
 - Dynamic Column Rendering
 - Device Rotation
 - On-press Handlers
