@@ -1,6 +1,6 @@
 {
-  "name": "rn-masonry-example",
-  "description": "Example app for rn-masonry",
+  "name": "rn-masonry-list-example",
+  "description": "Example app for rn-masonry-list",
   "version": "0.0.1",
   "private": true,
   "scripts": {

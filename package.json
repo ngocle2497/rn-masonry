@@ -1,5 +1,5 @@
 {
-    "name": "rn-masonry",
+    "name": "rn-masonry-list",
     "version": "1.0.0",
     "description": "Masonry list with high performance",
     "main": "lib/commonjs/index.js",
@@ -26,6 +26,7 @@
         "android",
         "masonry",
         "rn-masonry",
+        "rn-masonry-list",
         "react-masonry",
         "react-native-masonry",
         "masonry-list",
@@ -66,70 +67,6 @@
     "peerDependencies": {
         "react": "*",
         "react-native": "*"
-    },
-    "jest": {
-        "preset": "react-native",
-        "modulePathIgnorePatterns": [
-            "<rootDir>/example/node_modules",
-            "<rootDir>/lib/"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-commit": "yarn lint && yarn typescript"
-        }
-    },
-    "commitlint": {
-        "extends": [
-            "@commitlint/config-conventional"
-        ]
-    },
-    "release-it": {
-        "git": {
-            "commitMessage": "chore: release ${version}",
-            "tagName": "v${version}"
-        },
-        "npm": {
-            "publish": true
-        },
-        "github": {
-            "release": true
-        },
-        "plugins": {
-            "@release-it/conventional-changelog": {
-                "preset": "angular"
-            }
-        }
-    },
-    "eslintConfig": {
-        "extends": [
-            "@react-native-community",
-            "prettier"
-        ],
-        "rules": {
-            "prettier/prettier": [
-                "error",
-                {
-                    "quoteProps": "consistent",
-                    "singleQuote": true,
-                    "tabWidth": 2,
-                    "trailingComma": "es5",
-                    "useTabs": false
-                }
-            ]
-        }
-    },
-    "eslintIgnore": [
-        "node_modules/",
-        "lib/"
-    ],
-    "prettier": {
-        "quoteProps": "consistent",
-        "singleQuote": true,
-        "tabWidth": 2,
-        "trailingComma": "es5",
-        "useTabs": false
     },
     "@react-native-community/bob": {
         "source": "src",

@@ -21,14 +21,14 @@
 
 ## installation
 ```sh
-yarn add rn-masonry
+yarn add rn-masonry-list
 # or
-npm install rn-masonry
+npm install rn-masonry-list
 ```
 ## Usage
 
     ```js
-    import Masonry from 'rn-masonry';
+    import Masonry from 'rn-masonry-list';
     ```
     ```js
     <Masonry
