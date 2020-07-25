@@ -1,7 +1,7 @@
 {
     "name": "rn-masonry",
     "version": "0.1.0",
-    "description": "Masonry list with high perfomance",
+    "description": "Masonry list with high performance",
     "main": "lib/commonjs/index",
     "module": "lib/module/index",
     "types": "lib/typescript/src/index.d.ts",
@@ -39,7 +39,8 @@
     },
     "homepage": "https://github.com/hngocl/rn-masonry#readme",
     "dependencies": {
-        "react-fast-compare": "3.1.1"
+        "react-fast-compare": "3.1.1",
+        "react-native-fast-image": "8.1.5"
     },
     "devDependencies": {
         "@commitlint/config-conventional": "^8.3.4",
