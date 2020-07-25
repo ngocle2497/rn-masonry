@@ -1,2 +1,2 @@
 export { Masonry as default } from './Masonry'
-export type { Data, DataPress, InjectorProps, ColumnsProps } from './types';
+export type { DataType, DataPassParam, InjectorProps, ColumnsProps } from './types';

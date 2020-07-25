@@ -37,7 +37,7 @@ const MasonryComponent = ({ data = [], containerImageStyle, customRenderItem, re
                     newData = dataConcat
                     setDataSource(newData)
                 }
-            }, (error) => {
+            }, (_) => {
                 console.warn('Image failed to load')
             });
         }
@@ -87,7 +87,7 @@ const MasonryComponent = ({ data = [], containerImageStyle, customRenderItem, re
             <Column  {...{ onPress, space: space < 0 ? 0 : space, containerImageStyle, customRenderItem, renderFooter, renderHeader, dimensions, columns: oldColumn }} data={item} />
         )
     }
-    const _keyExtractor = useCallback((item: ItemColumn[], index) => index.toString(), [dataSource])
+    const _keyExtractor = useCallback((_: ItemColumn[], index) => index.toString(), [dataSource])
 
     // effect
     useEffect(() => {
