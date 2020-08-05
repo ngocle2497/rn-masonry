@@ -25,12 +25,16 @@ yarn add rn-masonry-list
 # or
 npm install rn-masonry-list
 ```
+
+> Also, you need to install [react-native-fast-image](https://github.com/DylanVann/react-native-fast-image) and follow theirs installation instructions.
+
 ## Usage
 
-    ```js
+```tsx
     import Masonry from 'rn-masonry-list';
-    ```
-    ```js
+```
+
+```tsx
     <Masonry
       columns={4} // optional - Default: 2
       data={[
@@ -39,7 +43,7 @@ npm install rn-masonry-list
         { uri: 'http://image3.jpg' }
       ]}
     />
-    ```
+```
 
 ## Props
 

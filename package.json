@@ -1,6 +1,6 @@
 {
     "name": "rn-masonry-list",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Masonry list with high performance",
     "main": "lib/commonjs/index.js",
     "module": "lib/module/index.js",
@@ -40,14 +40,14 @@
     },
     "homepage": "https://github.com/hngocl/rn-masonry#readme",
     "dependencies": {
-        "react-fast-compare": "3.1.1",
-        "react-native-fast-image": "8.1.5"
+        "react-fast-compare": "3.1.1"
     },
     "devDependencies": {
         "@commitlint/config-conventional": "^8.3.4",
         "@react-native-community/bob": "^0.16.2",
         "@react-native-community/eslint-config": "^2.0.0",
         "@release-it/conventional-changelog": "^1.1.4",
+        "react-native-fast-image":"^8.3.2",
         "@types/jest": "^26.0.0",
         "@types/react": "^16.9.19",
         "@types/react-native": "0.62.13",
@@ -66,7 +66,8 @@
     },
     "peerDependencies": {
         "react": "*",
-        "react-native": "*"
+        "react-native": "*",
+        "react-native-fast-image":">=8.3.2"
     },
     "@react-native-community/bob": {
         "source": "src",
