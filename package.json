@@ -1,6 +1,6 @@
 {
     "name": "rn-masonry-list",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Masonry list with high performance",
     "main": "lib/commonjs/index.js",
     "module": "lib/module/index.js",

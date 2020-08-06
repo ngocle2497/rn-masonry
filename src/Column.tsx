@@ -53,7 +53,6 @@ const ColumnComponent = ({ data, dimensions, containerImageStyle, customRenderIt
 
     useEffect(() => {
         const images = _resizeImage()
-        console.log('object', space)
         setDataSource(images)
     }, [data, dimensions, columns, columnWidth, space])
 
